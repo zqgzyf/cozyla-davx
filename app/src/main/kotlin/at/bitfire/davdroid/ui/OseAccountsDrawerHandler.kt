@@ -103,9 +103,7 @@ open class OseAccountsDrawerHandler @Inject constructor(): AccountsDrawerHandler
             title = stringResource(R.string.navigation_drawer_privacy_policy),
             onClick = {
                 uriHandler.openUri(
-                    Constants.HOMEPAGE_URL.buildUpon()
-                        .appendPath(Constants.HOMEPAGE_PATH_PRIVACY)
-                        .withStatParams(WEB_CONTEXT)
+                    Constants.COZYLA_PRIVACY.buildUpon()
                         .build().toString()
                 )
             }

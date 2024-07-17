@@ -1,0 +1,192 @@
+package at.bitfire.davdroid.ui.setup
+
+import android.net.Uri
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Folder
+import androidx.compose.material.icons.filled.Password
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.core.text.HtmlCompat
+import androidx.hilt.navigation.compose.hiltViewModel
+import at.bitfire.davdroid.Constants
+import at.bitfire.davdroid.R
+import at.bitfire.davdroid.ui.UiUtils.toAnnotatedString
+import at.bitfire.davdroid.ui.composable.Assistant
+import at.bitfire.davdroid.ui.composable.PasswordTextField
+import at.bitfire.davdroid.ui.widget.ClickableTextWithLink
+
+object CloudLogin : LoginType {
+
+    override val title
+        get() = R.string.login_cloud_url
+
+    override val helpUrl: Uri?
+        get() = null
+
+    @Composable
+    override fun LoginScreen(
+        snackbarHostState: SnackbarHostState,
+        initialLoginInfo: LoginInfo,
+        onLogin: (LoginInfo) -> Unit
+    ) {
+        val model: UrlLoginModel = hiltViewModel(
+            creationCallback = { factory: UrlLoginModel.Factory ->
+                factory.create(loginInfo = initialLoginInfo)
+            }
+        )
+
+        val uiState = model.uiState
+        LaunchedEffect(Unit) {
+            model.setUrl("https://caldav.icloud.com/")
+        }
+
+
+        CloudLoginScreen(
+            url = uiState.url,
+            onSetUrl = model::setUrl,
+            username = uiState.username,
+            onSetUsername = model::setUsername,
+            password = uiState.password,
+            onSetPassword = model::setPassword,
+            canContinue = uiState.canContinue,
+            onLogin = {
+                if (uiState.canContinue)
+                    onLogin(uiState.asLoginInfo())
+            }
+        )
+    }
+
+}
+
+@Composable
+fun CloudLoginScreen(
+    url: String,
+    onSetUrl: (String) -> Unit = {},
+    username: String,
+    onSetUsername: (String) -> Unit = {},
+    password: String,
+    onSetPassword: (String) -> Unit = {},
+    canContinue: Boolean,
+    onLogin: () -> Unit = {}
+) {
+    val focusRequester = remember { FocusRequester() }
+    val isVisible = remember { mutableStateOf(false) }
+    val uriHandler = LocalUriHandler.current
+    Assistant(
+        nextLabel = stringResource(R.string.login_login),
+        nextEnabled = canContinue,
+        onNext = onLogin
+    ) {
+        Column(modifier = Modifier.padding(8.dp)) {
+            Text(
+                stringResource(R.string.login_cloud_url),
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            )
+            if (isVisible.value) {
+
+                OutlinedTextField(
+                    value = url,
+                    onValueChange = onSetUrl,
+                    label = { Text(stringResource(R.string.login_base_url)) },
+                    placeholder = { Text("dav.example.com/path") },
+                    singleLine = true,
+                    leadingIcon = {
+                        Icon(Icons.Default.Folder, null)
+                    },
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Uri,
+                        imeAction = ImeAction.Next
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .focusRequester(focusRequester)
+                )
+
+            }
+
+
+            val manualUrl = Constants.APPLE_URL.buildUpon()
+                .build()
+            val urlInfo = HtmlCompat.fromHtml(stringResource(R.string.login_cloud_info, manualUrl), HtmlCompat.FROM_HTML_MODE_COMPACT)
+            ClickableTextWithLink(
+                urlInfo.toAnnotatedString(),
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp, bottom = 16.dp)
+            )
+
+            OutlinedTextField(
+                value = username,
+                onValueChange = onSetUsername,
+                label = { Text(stringResource(R.string.login_user_name)) },
+                singleLine = true,
+                leadingIcon = {
+                    Icon(Icons.Default.AccountCircle, null)
+                },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = ImeAction.Next
+                ),
+                modifier = Modifier.fillMaxWidth().focusRequester(focusRequester)
+            )
+
+            PasswordTextField(
+                password = password,
+                onPasswordChange = onSetPassword,
+                labelText = stringResource(R.string.login_cloud_password),
+                leadingIcon = {
+                    Icon(Icons.Default.Password, null)
+                },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = { onLogin() }
+                ),
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
+}
+
+@Composable
+@Preview
+fun CloudLoginScreen_Preview() {
+    CloudLoginScreen(
+        url = "https://example.com",
+        username = "user",
+        password = "",
+        canContinue = false
+    )
+}

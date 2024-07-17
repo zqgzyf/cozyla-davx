@@ -258,19 +258,23 @@
     <string name="login_provider_login">Provider-specific login</string>
     <string name="login_continue">Continue</string>
     <string name="login_login">Login</string>
-    <string name="login_type_email">Login with email address</string>
+    <string name="login_type_email">Add with email address</string>
     <string name="login_email_address">Email address</string>
-    <string name="login_email_address_error">Valid email address required</string>
+    <string name="login_email_address_error">Vcloud_lid email address required</string>
     <string name="login_email_address_info"><![CDATA[The email domain is used as base URL. <a href="%s">Services are discovered</a> using DNS records and well-known URLs.]]></string>
     <string name="login_password">Password</string>
+    <string name="login_cloud_password">App-specific password</string>
     <string name="login_password_hide">Hide password</string>
     <string name="login_password_show">Show password</string>
     <string name="login_password_optional">Password*</string>
-    <string name="login_type_url">Login with CalDAV URL and user name</string>
+    <string name="login_type_url">Add with URL and username</string>
+    <string name="login_cloud_url">Add iCloud</string>
+    <string name="login_yahoo_url">Add Yahoo</string>
     <string name="login_user_name">User name</string>
     <string name="login_user_name_optional">User name*</string>
     <string name="login_base_url">Base URL</string>
     <string name="login_base_url_info"><![CDATA[The base URL will be checked directly, but <a href="%s">services are also discovered</a> using DNS records and well-known URLs.]]></string>
+    <string name="login_cloud_info"><![CDATA[To add an iCloud account, you need to use an app-specific password. <a href="%s">Click here</a> for instructions. ]]></string>
     <string name="login_select_certificate">Select certificate</string>
     <string name="login_create_account">Add account</string>
     <string name="login_account_name">Account name</string>
@@ -285,7 +289,7 @@
     <string name="login_client_certificate_selected">Client certificate: %s</string>
     <string name="login_no_certificate_found">No certificate found</string>
     <string name="login_install_certificate">Install certificate</string>
-    <string name="login_type_google">Google Contacts / Calendar</string>
+    <string name="login_type_google">Add Google</string>
     <string name="login_google_see_tested_with">Please see our \"Tested with Google\" page for up-to-date information.</string>
     <string name="login_google_unexpected_warnings">You may experience unexpected warnings and/or have to create your own client ID.</string>
     <string name="login_google_account">Google account</string>

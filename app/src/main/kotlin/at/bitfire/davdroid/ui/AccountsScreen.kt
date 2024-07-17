@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -65,11 +66,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import at.bitfire.davdroid.BuildConfig
 import at.bitfire.davdroid.R
 import at.bitfire.davdroid.ui.account.AccountProgress
 import at.bitfire.davdroid.ui.composable.ActionCard
 import at.bitfire.davdroid.ui.composable.ProgressBar
+import at.bitfire.davdroid.ui.intro.BatteryOptimizationsPage
+import at.bitfire.davdroid.ui.intro.BatteryOptimizationsPageModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
@@ -79,6 +83,7 @@ import kotlinx.coroutines.launch
 fun AccountsScreen(
     initialSyncAccounts: Boolean,
     onShowAppIntro: () -> Unit,
+    batteryOptimizationsPageModel: BatteryOptimizationsPageModel = viewModel(),
     accountsDrawerHandler: AccountsDrawerHandler,
     onAddAccount: () -> Unit,
     onShowAccount: (Account) -> Unit,
@@ -98,6 +103,18 @@ fun AccountsScreen(
 //        if (showAppIntro)
 //            onShowAppIntro()
 //    }
+
+
+    val ignoreBatteryOptimizationsResultLauncher = rememberLauncherForActivityResult(
+        BatteryOptimizationsPage.IgnoreBatteryOptimizationsContract
+    ) {
+        batteryOptimizationsPageModel.checkBatteryOptimizations()
+    }
+
+    LaunchedEffect(Unit) {
+        ignoreBatteryOptimizationsResultLauncher.launch(BuildConfig.APPLICATION_ID)
+    }
+
 
     AccountsScreen(
         accountsDrawerHandler = accountsDrawerHandler,

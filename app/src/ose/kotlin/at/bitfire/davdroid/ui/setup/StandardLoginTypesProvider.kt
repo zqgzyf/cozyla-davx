@@ -13,18 +13,17 @@ class StandardLoginTypesProvider @Inject constructor() : LoginTypesProvider {
 
     companion object {
         val genericLoginTypes = listOf(
+            CloudLogin,
+            GoogleLogin,
             UrlLogin,
             EmailLogin,
             AdvancedLogin
         )
 
-        val specificLoginTypes = listOf(
-            GoogleLogin,
-            NextcloudLogin
-        )
+        val specificLoginTypes = emptyList<LoginType>()
     }
 
-    override val defaultLoginType = UrlLogin
+    override val defaultLoginType = CloudLogin
 
     override fun intentToInitialLoginType(intent: Intent) =
         if (intent.hasExtra(LoginActivity.EXTRA_LOGIN_FLOW))

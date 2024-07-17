@@ -14,7 +14,7 @@
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="at.bitfire.davdroid" android:path="/oauth2/redirect"/>
+                <data android:scheme="com.cozyla.davx" android:path="/oauth2/redirect"/>
             </intent-filter>
         </activity>
 

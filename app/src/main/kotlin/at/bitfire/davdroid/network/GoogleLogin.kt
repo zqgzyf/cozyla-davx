@@ -28,7 +28,7 @@ class GoogleLogin(
     companion object {
 
         // davx5integration@gmail.com (for davx5-ose)
-        private const val CLIENT_ID = "1069050168830-eg09u4tk1cmboobevhm4k3bj1m4fav9i.apps.googleusercontent.com"
+        private const val CLIENT_ID = "561076319877-2bjf5tmfamm35vr7vh1mjf7r14nil37g.apps.googleusercontent.com"
 
         private val SCOPES = arrayOf(
             "https://www.googleapis.com/auth/calendar",     // CalDAV
@@ -46,7 +46,7 @@ class GoogleLogin(
             URI("https", "apidata.googleusercontent.com", "/caldav/v2/$googleAccount/user", null)
 
         private val serviceConfig = AuthorizationServiceConfiguration(
-            Uri.parse("https://accounts.google.com/o/oauth2/v2/auth"),
+            Uri.parse("https://accounts.google.com/o/oauth2/auth"),
             Uri.parse("https://oauth2.googleapis.com/token")
         )
 

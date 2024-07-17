@@ -105,7 +105,24 @@ fun LoginScreenContent(
                     .padding(padding)
             ) {
 
-                LoginDetailsPage(snackbarHostState = snackbarHostState)
+                when (page) {
+                    LoginScreenModel.Page.LoginType ->
+                        LoginTypePage(snackbarHostState = snackbarHostState)
+
+                    LoginScreenModel.Page.LoginDetails ->
+                        LoginDetailsPage(snackbarHostState = snackbarHostState)
+
+                    LoginScreenModel.Page.DetectResources ->
+                        DetectResourcesPage()
+
+                    LoginScreenModel.Page.AccountDetails ->
+                        AccountDetailsPage(
+                            snackbarHostState = snackbarHostState,
+                            onAccountCreated = { account ->
+                                onFinish(account)
+                            }
+                        )
+                }
 
             }
         }

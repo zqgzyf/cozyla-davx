@@ -14,10 +14,12 @@ object Constants {
     const val DAVDROID_GREEN_RGBA = 0xFF8bc34a.toInt()
 
     val HOMEPAGE_URL = "https://www.davx5.com".toUri()
+    val COZYLA_PRIVACY = "https://www.cozyla.com/pages/cozyla-caldav-privacy-policy".toUri()
     val COZYLA_STORE_URL = "https://www.cozyla.com/".toUri()
     val TUTORIAL_VIDEOS  = "https://www.cozyla.com/calendartutorial".toUri()
     val COZYLA_FAQ_URL = "https://support.cozyla.com/hc/en-us/categories/26643447703579-Cozyla-Calendar".toUri()
     val COZYLA_SUPPORT_URL = "https://support.cozyla.com/hc/en-us/categories/26643447703579-Cozyla-Calendar".toUri()
+    val APPLE_URL = "https://support.apple.com/en-us/102654".toUri()
     const val HOMEPAGE_PATH_FAQ = "faq"
     const val HOMEPAGE_PATH_FAQ_SYNC_NOT_RUN = "synchronization-is-not-run-as-expected"
     const val HOMEPAGE_PATH_FAQ_LOCATION_PERMISSION = "wifi-ssid-restriction-location-permission"
