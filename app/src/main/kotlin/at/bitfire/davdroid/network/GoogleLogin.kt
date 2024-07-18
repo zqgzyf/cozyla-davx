@@ -32,7 +32,7 @@ class GoogleLogin(
 
         private val SCOPES = arrayOf(
             "https://www.googleapis.com/auth/calendar",     // CalDAV
-            "https://www.googleapis.com/auth/carddav"       // CardDAV
+//            "https://www.googleapis.com/auth/carddav"       // CardDAV
         )
 
         /**
