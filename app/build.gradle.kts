@@ -1,3 +1,6 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 /***************************************************************************************************
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  **************************************************************************************************/
@@ -18,12 +21,12 @@ android {
     defaultConfig {
         applicationId = "com.cozyla.davx"
 
-        versionCode = 20240716
-        versionName = "1.0.0"
+        versionCode = releaseTime().toInt()
+        versionName = "1.0.0." + releaseTime()
 
         buildConfigField("long", "buildTime", "${System.currentTimeMillis()}L")
 
-        setProperty("archivesBaseName", "davx5-ose-$versionName")
+        setProperty("archivesBaseName", "davx5-$versionName")
 
         minSdk = 24        // Android 7.0
         targetSdk = 34     // Android 14
@@ -56,7 +59,6 @@ android {
     productFlavors {
         create("ose") {
             dimension = "distribution"
-            versionNameSuffix = "-ose"
         }
     }
 
@@ -213,4 +215,11 @@ dependencies {
 
 
 
+}
+
+// 定义获取当前日期和时间并格式化的方法
+fun releaseTime(): String {
+    val current = LocalDateTime.now()
+    val formatter = DateTimeFormatter.ofPattern("yyyyMMddHH")
+    return current.format(formatter)
 }
