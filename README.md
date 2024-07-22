@@ -49,9 +49,6 @@ Parts of DAVx⁵ have been outsourced into these libraries:
 * [ical4android](https://github.com/bitfireAT/ical4android) – iCalendar processing and Calendar Provider access
 * [vcard4android](https://github.com/bitfireAT/vcard4android) – vCard processing and Contacts Provider access
 
-**If you want to support DAVx⁵, please consider [donating to DAVx⁵](https://www.davx5.com/donate)
-or [purchasing it](https://www.davx5.com/download).**
-
 
 USED THIRD-PARTY LIBRARIES
 ==========================
