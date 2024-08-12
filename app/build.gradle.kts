@@ -197,21 +197,6 @@ dependencies {
     implementation(libs.openid.appauth)
     implementation(libs.unifiedpush)
 
-    // for tests
-    androidTestImplementation(libs.androidx.arch.core.testing)
-    androidTestImplementation(libs.androidx.test.core)
-    androidTestImplementation(libs.androidx.test.junit)
-    androidTestImplementation(libs.androidx.test.rules)
-    androidTestImplementation(libs.androidx.test.runner)
-    androidTestImplementation(libs.androidx.work.testing)
-    androidTestImplementation(libs.hilt.android.testing)
-    androidTestImplementation(libs.junit)
-    androidTestImplementation(libs.mockk.android)
-    androidTestImplementation(libs.okhttp.mockwebserver)
-    androidTestImplementation(libs.room.testing)
-
-    testImplementation(libs.junit)
-    testImplementation(libs.okhttp.mockwebserver)
 
 
 
