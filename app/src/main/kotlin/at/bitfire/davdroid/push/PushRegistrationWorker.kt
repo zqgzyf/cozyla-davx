@@ -17,8 +17,8 @@ import androidx.work.WorkerParameters
 import at.bitfire.dav4jvm.DavCollection
 import at.bitfire.dav4jvm.DavResource
 import at.bitfire.dav4jvm.Property
-import at.bitfire.dav4jvm.XmlUtils
-import at.bitfire.dav4jvm.XmlUtils.insertTag
+import at.bitfire.davdroid.utils.XmlUtils
+import at.bitfire.davdroid.utils.XmlUtils.insertTag
 import at.bitfire.dav4jvm.property.push.NS_WEBDAV_PUSH
 import at.bitfire.davdroid.R
 import at.bitfire.davdroid.db.Collection

@@ -50,7 +50,7 @@ class DavSyncStatsRepository @Inject constructor(
         val packageName = packageManager.resolveContentProvider(authority, 0)?.packageName ?: authority
         return try {
             val appInfo = packageManager.getPackageInfo(packageName, 0).applicationInfo
-            packageManager.getApplicationLabel(appInfo).toString()
+            packageManager.getApplicationLabel(appInfo!!).toString()
         } catch (e: PackageManager.NameNotFoundException) {
             Logger.log.warning("Application name not found for authority: $authority")
             authority

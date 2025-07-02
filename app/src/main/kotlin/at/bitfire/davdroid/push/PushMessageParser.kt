@@ -4,7 +4,7 @@
 
 package at.bitfire.davdroid.push
 
-import at.bitfire.dav4jvm.XmlUtils
+import at.bitfire.davdroid.utils.XmlUtils
 import at.bitfire.dav4jvm.property.push.PushMessage
 import at.bitfire.davdroid.log.Logger
 import org.xmlpull.v1.XmlPullParserException
@@ -28,7 +28,7 @@ class PushMessageParser @Inject constructor() {
 
             XmlUtils.processTag(parser, PushMessage.NAME) {
                 val pushMessage = PushMessage.Factory.create(parser)
-                topic = pushMessage.topic
+                topic = pushMessage.topic?.topic
             }
         } catch (e: XmlPullParserException) {
             Logger.log.log(Level.WARNING, "Couldn't parse push message", e)

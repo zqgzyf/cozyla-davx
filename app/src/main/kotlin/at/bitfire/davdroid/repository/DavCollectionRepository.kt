@@ -7,8 +7,8 @@ package at.bitfire.davdroid.repository
 import android.accounts.Account
 import android.content.Context
 import at.bitfire.dav4jvm.DavResource
-import at.bitfire.dav4jvm.XmlUtils
-import at.bitfire.dav4jvm.XmlUtils.insertTag
+import at.bitfire.davdroid.utils.XmlUtils
+import at.bitfire.davdroid.utils.XmlUtils.insertTag
 import at.bitfire.dav4jvm.property.caldav.CalendarColor
 import at.bitfire.dav4jvm.property.caldav.CalendarDescription
 import at.bitfire.dav4jvm.property.caldav.CalendarTimezone

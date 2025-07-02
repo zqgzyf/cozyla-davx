@@ -16,7 +16,7 @@ plugins {
 
 // Android configuration
 android {
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.cozyla.davx"
@@ -29,7 +29,7 @@ android {
         setProperty("archivesBaseName", "davx5-$versionName")
 
         minSdk = 24        // Android 7.0
-        targetSdk = 34     // Android 14
+        targetSdk = 36     // Android 15
 
         buildConfigField("String", "userAgent", "\"DAVx5\"")
 

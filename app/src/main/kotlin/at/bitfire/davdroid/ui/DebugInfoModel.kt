@@ -233,7 +233,7 @@ class DebugInfoModel @AssistedInject constructor(
                         val info = pm.getPackageInfo(packageName, 0)
                         val appInfo = info.applicationInfo
                         val notes = mutableListOf<String>()
-                        if (!appInfo.enabled)
+                        if (!appInfo!!.enabled)
                             notes += "disabled"
                         if (appInfo.flags.and(ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0)
                             notes += "<em>on external storage</em>"
@@ -360,16 +360,18 @@ class DebugInfoModel @AssistedInject constructor(
             // permissions
             writer.append("Permissions:\n")
             val ownPkgInfo = context.packageManager.getPackageInfo(BuildConfig.APPLICATION_ID, PackageManager.GET_PERMISSIONS)
-            for (permission in ownPkgInfo.requestedPermissions) {
-                val shortPermission = permission.removePrefix("android.permission.")
-                writer.append(" - $shortPermission: ")
-                    .append(
-                        if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED)
-                            "granted"
-                        else
-                            "denied"
-                    )
-                    .append('\n')
+            if (ownPkgInfo.requestedPermissions != null) {
+                for (permission in ownPkgInfo.requestedPermissions!!) {
+                    val shortPermission = permission.removePrefix("android.permission.")
+                    writer.append(" - $shortPermission: ")
+                        .append(
+                            if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED)
+                                "granted"
+                            else
+                                "denied"
+                        )
+                        .append('\n')
+                }
             }
             writer.append('\n')
 

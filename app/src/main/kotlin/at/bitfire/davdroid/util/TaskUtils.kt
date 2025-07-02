@@ -98,7 +98,7 @@ object TaskUtils {
 
         val pm = context.packageManager
         val tasksAppInfo = pm.getPackageInfo(e.provider.packageName, 0)
-        val tasksAppLabel = tasksAppInfo.applicationInfo.loadLabel(pm)
+        val tasksAppLabel = tasksAppInfo.applicationInfo?.loadLabel(pm)
 
         val notify = NotificationUtils.newBuilder(context, NotificationUtils.CHANNEL_SYNC_ERRORS)
             .setSmallIcon(R.drawable.ic_sync_problem_notify)
