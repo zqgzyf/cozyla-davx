@@ -29,7 +29,7 @@ android {
         setProperty("archivesBaseName", "davx5-$versionName")
 
         minSdk = 24        // Android 7.0
-        targetSdk = 36     // Android 15
+        targetSdk = 36     // Android 16
 
         buildConfigField("String", "userAgent", "\"DAVx5\"")
 
